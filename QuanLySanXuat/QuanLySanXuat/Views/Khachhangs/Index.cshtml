@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLySanXuat.Models.Khachhang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Khách Hàng</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="searchString">Tìm kiếm:</label>
+        <input type="text" class="form-control" id="searchString" name="searchString" value="@ViewBag.CurrentFilter">
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TenKhachHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKhachHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaKhachHang">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.MaKhachHang">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaKhachHang">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

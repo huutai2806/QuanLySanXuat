@@ -1,0 +1,54 @@
+﻿@model IEnumerable<QuanLySanXuat.Models.Chitietphieudathang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chi Tiết Phiếu Đặt Hàng</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<form asp-controller="ChiTietPhieuDatHang" asp-action="Index" method="get">
+    <p>
+        <input type="search" placeholder="Tìm kiếm" name="searchString" />
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuongDat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaThuocNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoPhieuNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuongDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaThuocNavigation.MaThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoPhieuNavigation.SoPhieu)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Sửa", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

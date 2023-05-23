@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanLySanXuat.Models.Phieudathang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Phiếu Đặt Hàng</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<form asp-controller="PhieuDatHang" asp-action="Index" method="get">
+    <p>
+        Tìm kiếm: <input type="text" name="searchString">
+        <input type="submit" value="Tìm kiếm">
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayLapPhieu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaKhachHangNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayLapPhieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKhachHangNavigation.MaKhachHang)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SoPhieu">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.SoPhieu">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.SoPhieu">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

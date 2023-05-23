@@ -1,0 +1,61 @@
+﻿@model IEnumerable<QuanLySanXuat.Models.Phancong>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Phân Công</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="searchString">Tìm kiếm:</label>
+        <input type="text" class="form-control" id="searchString" name="searchString" value="@ViewBag.CurrentFilter">
+    </div>
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaPhanXuongNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaThuocNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoPhieuNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaPhanXuongNavigation.MaPhanXuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaThuocNavigation.MaThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoPhieuNavigation.SoPhieu)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SoPhanCong">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.SoPhanCong">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.SoPhanCong">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

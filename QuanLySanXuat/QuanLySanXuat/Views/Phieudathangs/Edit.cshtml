@@ -1,0 +1,40 @@
+﻿@model QuanLySanXuat.Models.Phieudathang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Sửa</h1>
+
+<h4>Phieudathang</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SoPhieu" />
+            <div class="form-group">
+                <label asp-for="NgayLapPhieu" class="control-label"></label>
+                <input asp-for="NgayLapPhieu" class="form-control" />
+                <span asp-validation-for="NgayLapPhieu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaKhachHang" class="control-label"></label>
+                <select asp-for="MaKhachHang" class="form-control" asp-items="ViewBag.MaKhachHang"></select>
+                <span asp-validation-for="MaKhachHang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu lại" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Trở về danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
